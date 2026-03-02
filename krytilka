@@ -1,0 +1,26 @@
+#include <Arduino.h>
+
+const int pin = A0;
+const int ledKol = 5;
+int ledpin[] = {3,5,7,8};
+
+void setup() {
+
+  for (int i = 0; i < ledKol; i++){
+    pinMode(ledpin[i], OUTPUT);
+  }
+}
+
+void loop() {
+  int x = analogRead(pin);
+  int ledlvl = map(x, 0, 1023, 0, ledKol);
+
+  for (int i = 0; i < ledKol; i++){
+    if (i < ledlvl){
+      digitalWrite(ledpin[i], HIGH);
+    }
+    else {
+      digitalWrite(ledpin[i], LOW);
+    }
+  }
+}
